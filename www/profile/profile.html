@@ -1,0 +1,125 @@
+<div class="app">
+	<style type="text/css">
+		.table-user-information {
+			margin-bottom: 0px !important;
+		}
+		.table-user-information > tbody > tr > td {
+			border-top: 0 !important;
+			padding: 4px 8px !important;
+		}
+	</style>
+	<div class="custom-navbar">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="">
+					<ul class="nav navbar-nav navbar-left">
+						<li>
+							<button type="button" class="btn btn-default btn-sm" ng-click="GoBackClick()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+						</li>
+						<li>
+							<h4>Profile</h4>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="ui" ng-show="user">
+		<div style="padding:0% 5%">
+			<div style="margin:0px;border-color:#FFAB23;" class="panel panel-primary">
+				<div style="background-color:#FFAB23;border-color:#FFAB23;" class="panel-heading">
+					<div class="panel-title pull-left">
+						<h4 style="height:25px" ng-show="!InEditMode">{{ user.Info.Name }}</h4>
+						<h4 style="height:25px;color:#000000;border-color:#FFAB23" ng-show="InEditMode"><input
+							style="height:25px;color:#000000;border-color:#FFAB23"
+							size="15" ng-model="user.Info.Name" min="0" max="40" name="t" /></h4>
+					</div>
+					<div class="panel-title pull-right" ng-click="EditButtonClick()" ng-show="AllowEdit && !InEditMode || (InEditMode && !SavingInProgress)"><button class="btn btn-default btn-sm" type="button" data-toggle="tooltip" data-original-title="Edit this user"><i class="glyphicon glyphicon-edit"></i> {{ InEditMode ? 'Save' : 'Edit' }}</button></div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="container-fluid" style="padding-right: 0px;">
+					<div class="pull-left" style="margin: 10px 2.5% 10px 0%">
+						<br />
+						<img style="height:100px;max-width:100px;max-height:100px;" ng-src="{{ picture }}" ng-click="PictureClick()" alt="Processing Upload" />
+						<br />
+					</div>
+					<div class="pull-right" style="margin: 10px 0%">
+						<br />
+						<table class="table table-user-information">
+							<tbody>
+								<tr>
+									<td>Short Name:</td>
+									<td style="width:66px;height:17px" ng-show="!InEditMode">{{ user.Info.ShortName }}</td>
+									<td ng-show="InEditMode"><input
+										ng-model="user.Info.ShortName" style="width:50px;height:17px;border-color:#FFFFFF"
+										maxlength="4" aw-limit-length="4" min="0" max="4" name="t" /></td>
+								</tr>
+								<tr>
+									<td style="padding-right: 5px;">Rating:</td>
+									<td>{{ user.Rating.toFixed(3) }}</td>
+								</tr>
+								<tr>
+									<td style="padding-right: 5px;">Best:</td>
+									<td>{{ user.Stats.BestRating.toFixed(3) }}</td>
+								</tr>
+								<tr>
+									<td style="padding-right: 5px;">Rounds Played:</td>
+									<td>{{ user.Stats.TotalGames || 0 }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div style="margin: 10px 2.5% 10px 0%;">
+						<textarea class="col-xs-12" ng-style="TextAreaStyle" ng-readonly="!InEditMode" rows="4" placeholder="Bio" maxlength="140" aw-limit-length="140" min="0" ng-model="user.Profile.Bio"></textarea>
+					</div>
+				</div>
+			</div>
+			<style type="text/css">
+				.button {
+					-moz-border-radius:6px;
+					-webkit-border-radius:6px;
+					border-radius:6px;
+					display:inline-block;
+					font-family:Arial;
+					font-size:15px;
+					font-weight:bold;
+					text-decoration:none;
+					padding: 2.5px 0px;
+					width: 100%;
+					height: 50px;
+					cursor:pointer;
+					-moz-box-shadow:inset 0px 1px 0px 0px #fff6af;
+					-webkit-box-shadow:inset 0px 1px 0px 0px #fff6af;
+					box-shadow:inset 0px 1px 0px 0px #fff6af;
+					background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23));
+					background:-moz-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+					background:-webkit-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+					background:-o-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+					background:-ms-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+					background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+					filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+					background-color:#ffec64;
+					border:1px solid #ffaa22;
+					color:#333333;
+					text-shadow:0px 1px 0px #ffee66;
+					outline: none;
+				}
+				.button:active {
+					position:relative;
+					top:1px;
+				}
+				.button:hover {
+					background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
+					background:-moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+					background:-webkit-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+					background:-o-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+					background:-ms-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+					background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+					filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64',GradientType=0);
+					background-color:#ffab23;
+				}
+			</style>
+			<div ng-show="AllowEdit" style="padding-top:10px"><button class="button" ng-click="historyButtonClick()"><i class="fa fa-history fa-lg pull-left" aria-hidden="true" style="margin-left:1em; margin-top:.1em;"></i>Completed Rounds</button></div><br />
+		</div>
+	</div>
+</div>

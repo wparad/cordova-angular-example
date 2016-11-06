@@ -1,0 +1,143 @@
+<div class="app">
+	<div class="custom-navbar">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="">
+					<ul class="nav navbar-nav navbar-left">
+						<li>
+							<button type="button" class="btn btn-default btn-sm" ng-click="GoBackClick()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+						</li>
+						<li>
+							<h4>Rounds</h4>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="ui" style="padding: 0% 5%">
+		<style type="text/css">
+			.datagrid table {
+				border-collapse: collapse;
+				text-align: left;
+				width: 100.5%;
+			}
+			.datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif;
+				background: #FFFFFF;
+				overflow: hidden;
+				border: 1px solid #FFAB23;
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				border-radius: 3px;
+			}
+			.datagrid table td, .datagrid table th {
+				padding: 3px 10px;
+			}
+			.datagrid table thead th {
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #FFAB23), color-stop(1, #D48200) );background:-moz-linear-gradient( center top, #FFAB23 5%, #D48200 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFAB23', endColorstr='#D48200');background-color:#FFAB23;
+				color:#FFFFFF;
+				font-size: 15px;
+				font-weight: bold;
+				border-left: 1px solid #FFEC64;
+			}
+			.datagrid table thead th:first-child {
+				border: none;
+			}
+			.datagrid table tbody td {
+				color: #D48200;
+				border-left: 1px solid #FFEC64;font-size: 12px;font-weight: normal;
+			}
+			.datagrid table tbody .alt td {
+				background: #FFEC64;
+				color: #D48200;
+				border-left: 1px solid #FFFFFF;font-size: 12px;font-weight: normal;
+			}
+			.datagrid table tbody td:first-child {
+				border-left: none;
+			}
+			.datagrid table tbody tr:last-child td {
+				border-bottom: none;
+			}
+			.datagrid table tfoot td div {
+				border-top: 1px solid #FFAB23;background: #FFEC64;
+			}
+			.datagrid table tfoot td {
+				padding: 0;
+				font-size: 12px;
+			}
+			.datagrid table tfoot td div{
+				padding: 2px;
+			}
+			.datagrid table tfoot td ul {
+				margin: 0;
+				padding:0;
+				list-style: none;
+				text-align: right;
+			}
+			.datagrid table tfoot  li {
+				display: inline;
+			}
+			.datagrid table tfoot li a {
+				text-decoration: none;
+				display: inline-block;
+				 padding: 2px 8px;
+				-moz-border-radius: 3px;
+				border-radius: 3px;
+			}
+			.datagrid table tfoot li a.button-enabled {
+				margin: 1px;color: #FFFFFF;border: 1px solid #FFAB23;-webkit-border-radius: 3px;
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #FFAB23), color-stop(1, #D48200) );background:-moz-linear-gradient( center top, #FFAB23 5%, #D48200 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFAB23', endColorstr='#D48200');
+			}
+			.datagrid table tfoot ul.active, .datagrid table tfoot ul a.button-enabled:hover {
+				text-decoration: none;border-color: #D48200;
+				color: #FFFFFF;
+				background: none;
+				background-color:#FFAB23;}div.dhtmlx_window_active, div.dhx_modal_cover_dv {
+				position: fixed !important;
+			}
+			.datagrid table tfoot li a.button-disabled {
+				margin: 1px;color: #FFFFFF;border: 1px solid #989288;-webkit-border-radius: 3px;
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #989288), color-stop(1, #989288) );background:-moz-linear-gradient( center top, #989288 5%, #989288 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#989288', endColorstr='#989288');
+			}
+		</style>
+		<div class="datagrid">
+			<style type="text/css">
+				.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+					background-color: 'aqua';
+				}
+			</style>
+			<table table table-sm table-hover>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Score</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tfoot ng-show="!previousHistoryPageButtonDisabled || !nextHistoryPageButtonDisabled">
+					<tr>
+						<td colspan="4">
+							<div id="paging">
+								<ul>
+									<li><a id="previousHistoryPageButton" href="#"
+										ng-click="previousHistoryPageButtonClick(); $event.preventDefault()"
+										ng-class="previousHistoryPageButtonClass"><span>Previous</span></a></li>
+									<li><a id="nextHistoryPageButton" href="#" 
+										ng-click="nextHistoryPageButtonClick(); $event.preventDefault()"
+										ng-class="nextHistoryPageButtonClass"><span>Next</span></a></li>
+								</ul>
+							</div>
+						</td>
+					</tr>
+				</tfoot>
+				<tbody class="do-not-animate" ng-repeat="game in games" ng-click="viewGame(game)">
+					<tr class="do-not-animate" style="height:40px" ng-class-odd="" ng-class-even="'alt'">
+						<td>{{game.Course}}</td>
+						<td>{{game.TotalStrokes}}</td>
+						<td>{{game.Date | millisecondsToDateTime}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

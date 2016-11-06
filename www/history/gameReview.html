@@ -1,0 +1,65 @@
+<div class="app">
+	<div class="custom-navbar">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="">
+					<ul class="nav navbar-nav navbar-left">
+						<li>
+							<button type="button" class="btn btn-default btn-sm" ng-click="GoBackClick()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+						</li>
+						<li>
+							<h4>{{ course.name }}</h4>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<style type="text/css">
+		.table-user-information > tbody > tr {
+			border-top: 1px solid #DDDDDD;
+		}
+		.table-user-information > tbody > tr:first-child {
+			border-top: 0;
+		}
+		.table-user-information > tbody > tr > td {
+			border-top: 0;
+		}
+	</style>
+	<div class="ui">
+		<div style="padding:0%" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div style="border-color:#FFAB23;margin-bottom: 0px;" class="panel panel-primary">
+				<div class="panel-body">
+					<div class="row">
+						<!-- <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<img class="img-circle" style="width:80px;height:80px;" ng-src="{{ courseUrl }}" alt="course image" />
+						</div> -->
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<table class="table table-sm table-inverse table-striped">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Par</th>
+										<th ng-style="game.cellStyle" ng-repeat="game in games">{{ game.shortName | limitTo:4 }}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="hole in holes">
+										<td scope="row">{{ hole.holeNumber}}</td>
+										<td>{{ hole.par }}</td>
+										<td ng-repeat="game in games" ng-style="game.cellStyle">{{ game.strokes[hole.holeNumber] }}</td>
+									</tr>
+									<tr>
+										<td scope="row">total</td>
+										<td>{{ total }}</td>
+										<td ng-repeat="game in games" ng-style="game.cellStyle">{{ game.total }}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

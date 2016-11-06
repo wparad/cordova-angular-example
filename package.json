@@ -1,0 +1,28 @@
+{
+  "name": "golf-pro",
+  "version": "1.0.0",
+  "description": "GolfPro",
+  "main": "index.js",
+  "config": {
+    "unsafe-perm": true
+  },
+  "dependencies": {
+    "bower": "^1.7.9",
+    "chai": "^3.2.0",
+    "commander": "^2.9.0",
+    "esprima": "^2.7.2",
+    "fs-extra": "^0.30.0",
+    "glob": "^5.0.15",
+    "jshint": "^2.9.3",
+    "lodash": "^4.14.1",
+    "mocha": "^2.5.3",
+    "plist": "^2.0.1",
+    "sharp": "^0.16.0",
+    "sinon": "^1.17.1",
+    "xml2js": "^0.4.17"
+  },
+  "scripts": {
+    "test": "mocha tests/**/*.js -R spec",
+    "postinstall": "node_modules/.bin/bower --allow-root install && ./make.js build"
+  }
+}

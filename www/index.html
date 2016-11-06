@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+		Customize this policy to fit your own app's needs. For more guidance, see:
+			https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+		Some notes:
+			* gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+			* https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+			* Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+				* Enable inline JS: add 'unsafe-inline' to default-src
+		-->
+		<meta http-equiv="Content-Security-Policy"
+			content="
+				default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' netfuturesportgolfpro://*;
+				connect-src 'self' gap: https://graph.facebook.com https://*.amazonaws.com/;
+				style-src 'self' gap: 'unsafe-inline';
+				frame-src gap: https://*.facebook.com http://*.facebook.com;
+				script-src 'self' gap: https://*.facebook.net https://graph.facebook.com/ http://connect.facebook.net/en_US/sdk.js 'unsafe-eval';
+				img-src 'self' data: file: gap: *;
+				media-src *">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+		<title>Golf Pro</title>
+
+		<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="lib/components-font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/spinner.css">
+		<link rel="stylesheet" href="lib/ng-dialog/css/ngDialog.min.css">
+		<link rel="stylesheet" href="lib/ng-dialog/css/ngDialog-theme-default.min.css">
+	</head>
+	<body style="height:100%">
+		<div id="main" style="height:100%">
+			<div ng-view="" style="height:100%">
+			</div>
+		</div>
+
+		<script type="text/javascript" src="Constants.js"></script>
+		<script type="text/javascript" src="MainHandler.js"></script>
+		<!-- <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script> -->
+
+		<script type="text/javascript" src="lib/angular/angular.min.js"></script>
+		<script type="text/javascript" src="lib/angular-route/angular-route.min.js"></script>
+		<script type="text/javascript" src="lib/angular-touch/angular-touch.min.js"></script>
+		<script type="text/javascript" src="lib/angular-animate/angular-animate.min.js"></script>
+		<script type="text/javascript" src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+		<script type="text/javascript" src="lib/ng-dialog/js/ngDialog.min.js"></script>
+
+		<script type="text/javascript" src="lib/aws-sdk/dist/aws-sdk.min.js"></script>
+		<script type="text/javascript" src="lib/Geolib/dist/geolib.min.js"></script>
+
+		<!-- UserPool -->
+		<script type="text/javascript" src="userpool-lib/jsbn.js"></script>
+		<script type="text/javascript" src="userpool-lib/moment.min.js"></script>
+		<script type="text/javascript" src="userpool-lib/sjcl.js"></script>
+		<script type="text/javascript" src="userpool-lib/aws-cognito-sdk.min.js"></script>
+		<script type="text/javascript" src="userpool-lib/amazon-cognito-identity.min.js"></script>
+		<!-- UserPool -->
+
+		<script type="text/javascript" src="lib/fastclick.min/index.js"></script>
+
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="index.js"></script>
+
+		<!-- Providers and Services -->
+		<script type="text/javascript" src="PageService.js"></script>
+		<script type="text/javascript" src="LoginStatusProvider.js"></script>
+		<script type="text/javascript" src="ApiProvider.js"></script>
+		<script type="text/javascript" src="StorageProviderService.js"></script>
+		<script type="text/javascript" src="EventHandler.js"></script>
+		<script type="text/javascript" src="GuiManager.js"></script>
+		<script type="text/javascript" src="GameManager.js"></script>
+		<script type="text/javascript" src="CourseProvider.js"></script>
+		<script type="text/javascript" src="UserManager.js"></script>
+		<script type="text/javascript" src="PushService.js"></script>
+		<script type="text/javascript" src="FeedService.js"></script>
+		<!-- Controllers -->
+		<script type="text/javascript" src="filters.js" defer></script>
+		<script type="text/javascript" src="login/LoginController.js" defer></script>
+		<script type="text/javascript" src="login/LogoutController.js" defer></script>
+		<script type="text/javascript" src="home/HomeController.js" defer></script>
+		<script type="text/javascript" src="profile/ProfileController.js" defer></script>
+		<script type="text/javascript" src="game/GameController.js" defer></script>
+		<script type="text/javascript" src="game/HoleController.js" defer></script>
+		<script type="text/javascript" src="competition/CompetitionController.js" defer></script>
+		<script type="text/javascript" src="history/HistoryController.js" defer></script>
+		<script type="text/javascript" src="history/GameReviewController.js" defer></script>
+		<script type="text/javascript" src="signup/SignUpController.js" defer></script>
+		<script type="text/javascript" src="news/NewsController.js" defer></script>
+		<script type="text/javascript" src="news/ItemController.js" defer></script>
+	</body>
+</html>

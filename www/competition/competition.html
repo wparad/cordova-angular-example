@@ -1,0 +1,71 @@
+<div class="app competition">
+	<div class="custom-navbar">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="">
+					<ul class="nav navbar-nav navbar-left">
+						<li>
+							<button type="button" class="btn btn-default btn-sm" ng-click="GoBackClick()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+						</li>
+						<li>
+							<h4>Friends</h4>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<button type="button" class="btn btn-default btn-sm" ng-click="ShareButtonClick()"><i class="fa fa-share-alt-square fa-lg" aria-hidden="true"></i></button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="ui">
+		<style type="text/css">
+			.competition table{
+				width:100%;
+				margin:0px;
+				table-layout: fixed;
+			}
+			.competition tr{
+				height: 40px;
+			}
+			.competition td{
+				padding: 2%;
+				vertical-align:middle !important;
+				font-weight: 300;
+				font-size: 16px;
+				color: #ffab23;
+			}
+		</style>
+		<div style="margin: 0% 5% 0% 5%;">
+			<form role="form">
+				<div class="form-group has-feedback">
+					<input type="text" class="form-control" ng-model="userSearchText" ng-change="searchBoxChanged()" placeholder="Search" />
+					<i class="form-control-feedback glyphicon glyphicon-search"></i>
+				</div>
+			</form>
+			<table style="margin: 10px 0px; border:none; border-top-width: 1px; border-bottom-width: 1px;" class="table">
+				<tbody ng-repeat="user in users | filter: filterFunction" class="do-not-animate">
+					<tr do-not-animate>
+						<td style="width: 38px;padding-left: 0px;padding-right: 4px;">
+							<div ng-show="user.IsFriend && user.UserId != currentUserId">
+								<button type="button" class="btn btn-inverted btn-sm" ng-click="RemoveFriend(user.UserId)"><span class="glyphicon glyphicon-minus"></span></button>
+							</div>
+							<div ng-show="!user.IsFriend && user.UserId != currentUserId">
+								<button type="button" class="btn btn-inverted btn-sm" ng-click="AddFriend(user.UserId)"><span class="glyphicon glyphicon-plus"></span></button>
+							</div>
+							<div ng-show="user.UserId == currentUserId">
+								<span class="glyphicon glyphicon-user"></span>
+							</div>
+						</td>
+						<td style="width: auto;padding-left: 4px;padding-right: 4px;overflow-x:hidden" ng-click="ProfileButtonClick(user.UserId)">{{ user.Info.Name | limitTo: 25 }}</td>
+						<td style="width: 38px;padding-left: 4px;padding-right: 0px;">
+							<button type="button" class="btn btn-default btn-sm" ng-click="ProfileButtonClick(user.UserId)"><span class="glyphicon glyphicon-chevron-right"></span></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

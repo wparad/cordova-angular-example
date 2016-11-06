@@ -1,0 +1,43 @@
+// // dependencies {
+// // 	compile ('com.google.firebase:firebase-messaging:9.0.0') {
+// // 	    exclude module: 'play-services-base'
+// // 	    exclude module: 'support-v4'
+// // 	    exclude module: 'support-annotations'
+// // 	}
+// // }
+// android {
+// 	defaultConfig {
+// 		//m ultiDexEnabled true
+// 	}
+// }
+// dependencies {
+// 	// compile('com.facebook.android:facebook-android-sdk') {
+// 	// 	exclude group: 'com.android.support', module:'support-v4'
+// 	// }
+// 	// compile 'com.android.support:multidex:1.0.1'
+// 	// compile 'com.google.firebase:firebase-core:9.0.0'
+// }
+configurations.all {
+    resolutionStrategy {
+        // force 'com.google.firebase:firebase-core:9.4.0'
+        // force 'com.google.firebase:firebase-common:9.4.0'
+        // force 'com.google.firebase:firebase-messaging:9.4.0'
+        // force 'com.google.firebase:firebase-iid:9.4.0'
+        // force 'com.google.android.gms:play-services-ads:9.4.0'
+        // force 'com.google.android.gms:play-services-ads:9.4.0'
+        // force 'com.google.android.gms:play-services-auth:9.4.0'
+        // force 'com.google.android.gms:play-services-identity:9.4.0'
+        eachDependency { DependencyResolveDetails details ->
+          if (details.requested.group == 'com.google.android.gms' || details.requested.group == 'com.google.firebase') {
+            details.useVersion '9.4.0'
+          }
+        }
+    }
+}
+android {
+    dexOptions {
+        //Set larger heap size
+        //javaMaxHeapSize "2g"
+    }
+    lintOptions { disable 'MissingTranslation', 'ExtraTranslation' }
+}

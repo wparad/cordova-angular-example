@@ -1,0 +1,134 @@
+<div class="app hole">
+	<div class="custom-navbar">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="">
+					<ul class="nav navbar-nav navbar-left">
+						<li>
+							<button type="button" class="btn btn-default btn-sm" ng-click="GoBackClick()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+						</li>
+						<li>
+							<h4>Scorecard</h4>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<button type="button" class="btn btn-default btn-sm" ng-click="RefreshButtonClick()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="ui" ng-swipe-left="SwipeLeft()" ng-swipe-right="SwipeRight()">
+		<div style="height:20%;text-align:center;">
+			<div>
+				<div style="font-size:30px;font-weight:bold;color:#FFAB23"><b>Hole {{ hole.currentHoleNumber }}</b></div>
+				<div style="font-size:15px;font-weight:bold;color:#FFAB23"><b>Par: {{ game.course.par[hole.currentHoleNumber] }}</b></div>
+			</div>
+		</div>
+		<div style="height:68%;overflow-y:scroll">
+			<style type="text/css">
+				.hole table{
+					width:100%;
+					margin:0px;
+					table-layout: fixed;
+				}
+				.hole tr{
+					height: 40px;
+				}
+				.hole th{
+					text-align: center !important;
+					font-weight: 900;
+					font-size: 3.8vmin;
+					color: #ffab23;
+					text-transform: uppercase;
+				}
+				.hole td{
+					text-align: center !important;
+					vertical-align:middle !important;
+					font-weight: 900;
+					font-size: 3.8vmin;
+					color: #ffab23;
+				}
+			</style>
+			<table style="margin: 0px; border:none; border-top-width: 1px; border-bottom-width: 1px;" class="table">
+				<thead>
+					<tr>
+						<th style="width:28%">Player</th>
+						<th style="width:18%">Hole</th>
+						<th style="width:18%">±</th>
+						<th style="width:18%">Total</th>
+						<th style="width:18%">±</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-style="user.IsCurrentUser ? { 'background-color': '#FFFFFF' } : {}" do-not-animate ng-repeat="user in game.users | orderBy:'Strokes':false:strokeComparator">
+						<td>{{ user.ShortName | limitTo: 6}}</td>
+						<td ng-show="!user.IsCurrentUser">{{ user.Strokes[hole.currentHoleNumber] }}</td>
+						<td ng-show="user.IsCurrentUser"><input
+							ng-change="strokesChanged()"
+							ng-model="user.Strokes[hole.currentHoleNumber]"
+							style="width:75%;font-size:18pt;"
+							class="strokeBox"
+							maxlength="2" aw-limit-length="2"
+							type="number" min="0" max="100" name="t" /></td>
+						<td>{{ user.Strokes[hole.currentHoleNumber] ? user.Strokes[hole.currentHoleNumber] - game.course.par[hole.currentHoleNumber] : 0 }}</td>
+						<td>{{ NormalizeUser(user).Total }}</td>
+						<td>{{ NormalizeUser(user).TotalDiff }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div style="height:10%">
+			<style type="text/css">
+				.hole-change-navbar {
+					height:8%;
+				}
+				.hole-change-navbar .navbar {
+					margin-bottom: 0px !important;
+					min-height: 20px !important;
+				}
+				.hole-change-navbar .navbar-default {
+					background-color: #000000;
+					border-color: #000000;
+				}
+				.hole-change-navbar .navbar-collapse.collapse {
+					display: block !important;
+				}
+				.hole-change-navbar .navbar-nav > li, .hole-change-navbar .navbar-nav {
+					margin: 0px !important;
+					float: left !important;
+				}
+				.hole-change-navbar .nav > li > a, .hole-change-navbar .navbar-nav > li > a {
+					padding: 5px 10px !important;
+				}
+				.hole-change-navbar .navbar-right {
+					float: right!important;
+				}
+				.hole-change-navbar .container-fluid {
+					padding-left: 0px !important;
+					padding-right: 0px !important;
+				}
+			</style>
+			<div class="hole-change-navbar">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="container-fluid">
+						<div class="">
+							<ul class="nav navbar-nav navbar-left">
+								<li>
+									<button type="button" style="border-color:#000000;outline:none;" class="btn btn-default" ng-click="PreviousHoleClick()"><i class="fa fa-chevron-circle-left fa-2x" aria-hidden="true"></i></button>
+								</li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<button type="button" style="border-color:#000000;outline:none;" class="btn btn-default" ng-click="NextHoleClick()"><i class="fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i></button>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,26 @@
+<div class="dialog-contents" style="height:330px">
+	<form style="height:300px;overflow-y:scroll;">
+		<label ng-if="friends.length == 0">
+			No available competitors to add to current game.
+		</label>
+		<table class="table">
+			<tbody style="border-top:none;" ng-repeat="friend in friends">
+				<tr ng-class-odd="" ng-class-even="'alt'">
+					<td style="border-top:none; padding:0px">
+						<label>
+							<input type="checkbox" ng-model="friend.selected">
+							{{ friend.name }}
+						</label>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<div>
+		<div class="pull-right">
+			<button ng-click="SearchForNewButtonClick()" class="btn btn-default">Find New</button>
+			<button ng-click="CloseClick(false)" class="btn btn-default">Cancel</button>
+			<button ng-click="CloseClick(true)" class="btn btn-default">Send Invite</button>
+		</div>
+	</div>
+</div>

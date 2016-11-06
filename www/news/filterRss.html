@@ -1,0 +1,21 @@
+<div class="dialog-contents" style="height:330px">
+	<form style="height:300px;overflow-y:scroll;">
+		<table class="table">
+			<tbody style="border-top:none;" ng-repeat="feed in Feeds">
+				<tr ng-class-odd="" ng-class-even="'alt'">
+					<td style="border-top:none; padding:0px">
+						<label>
+							<input type="checkbox" ng-model="feed.Selected">
+							{{ feed.Name }}
+						</label>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<div>
+		<div class="pull-right">
+			<button ng-click="CloseClick(true)" class="btn btn-default">Done</button>
+		</div>
+	</div>
+</div>

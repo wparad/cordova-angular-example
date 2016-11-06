@@ -1,0 +1,29 @@
+<div class="app news" style="background-color:#FFFFFF">
+	<div class="custom-navbar">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="">
+					<ul class="nav navbar-nav navbar-left">
+						<li>
+							<button type="button" class="btn btn-default btn-sm" ng-click="GoBackClick()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+						</li>
+						<li>
+							<h4>{{ Feed.Name }}</h4>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<button ng-show="Item.Url" type="button" class="btn btn-default" ng-click="ReadInBrowserClick()"><i class="fa fa-external-link-square" aria-hidden="true"></i></button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="ui" style="padding:0% 5%">
+		<div style="font-size:14px;font-weight:bold"><b>{{ Item.Title }}</b></div>
+		<div style="font-size:10px;font-weight:bold"><b>{{ Item.Date | date:'medium' }}</b></div>
+		<br />
+		<div ng-bind-html="Item.Headline"></div>
+	</div>
+</div>

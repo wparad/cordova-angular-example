@@ -1,0 +1,73 @@
+<div class="app news">
+	<div class="custom-navbar">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="">
+					<ul class="nav navbar-nav navbar-left">
+						<li>
+							<button type="button" class="btn btn-default btn-sm" ng-click="GoBackClick()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+						</li>
+						<li>
+							<h4>19th Hole</h4>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<button type="button" class="btn btn-default" ng-click="FilterButtonClick()"><i class="fa fa-filter" aria-hidden="true"></i></button>
+							<button type="button" class="btn btn-default" ng-click="RefreshButtonClick()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="ui" ng-show="!Items">
+		<div class="cssload-loader">
+			<div class="cssload-inner cssload-one"></div>
+			<div class="cssload-inner cssload-two"></div>
+			<div class="cssload-inner cssload-three"></div>
+		</div>
+		<center><h1>Gathering Headlines</h1></center>
+	</div>
+	<div class="ui" ng-show="Items">
+		<div>
+			<table style="border:none; border-top-width: 1px; border-bottom-width: 1px; margin-bottom: 0px;" class="table table-striped">
+				<tbody>
+					<style type="text/css">
+						.news table .alt {
+							background-color: #FFAB23
+						}
+						.news table td {
+							vertical-align: middle !important;
+						}
+					</style>
+					<tr ng-class="do-not-animate" ng-repeat="item in Items" ng-class-odd="" ng-class-even="'alt'">
+						<td ng-if="item.Ad && Ad">
+							<div style="height:50px">X</div>
+						</td>
+						<td ng-if="item.Ad && Ad">
+							<div style="height:50px">There will be a an ad here.</div>
+						</td>
+						<td ng-if="!item.Ad" style="width:10%">
+							<div style="border-radius: 50%; background-color: black; font-size: 18px; color:#FFAB23; text-align:center">
+								{{ item.Icon }}
+							</div>
+						</td>
+						<td ng-if="!item.Ad" ng-style="item.ItemStyle" ng-click="ViewItem(item)">
+							<div>
+								<div style="font-size:14px;font-weight:bold"><b>{{ item.Title }}</b></div>
+								<div style="font-size:10px;font-weight:bold"><b>{{ item.Date | date:'medium' }}</b></div>
+								<!-- <div style="font-size:10px">{{ item.Headline }}</div> -->
+							</div>
+						</td>
+						<!-- <td style="width:10%">
+							<button type="button" style="background-color:inherit;border:none;outline:none;" ng-click="RemoveItemButtonClick(item.ItemId)">
+								<i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
+							</button>
+						</td> -->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
